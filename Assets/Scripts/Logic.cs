@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Logic : MonoBehaviour
+public class Logic
 {
-    // Start is called before the first frame update
-    void Start()
+    Data data;
+
+    public void Setup(Data _data)
     {
-        
+        data = _data;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnMove(float deltaHorizontal, float deltaVertical)
     {
-        
+        Vector3 p = data.Position;
+        data.Position = new Vector3(p.x + deltaHorizontal, p.y, p.z + deltaVertical);
     }
 }
