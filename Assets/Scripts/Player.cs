@@ -14,12 +14,9 @@ public class Player : MonoBehaviour
 
         logic = new Logic();
         logic.Setup(data);
-    }
 
-    void Update()
-    {
-        float dv = Input.GetAxis("Vertical");
-        logic.OnMove(0, dv);
+        InputManager inputManager = GameObject.Find("Input Manager").GetComponent<InputManager>();
+        inputManager.Setup(logic);
     }
 
     void OnDestroy()
