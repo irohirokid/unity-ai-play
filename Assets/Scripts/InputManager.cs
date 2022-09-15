@@ -13,7 +13,10 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        float dv = Input.GetAxis("Vertical");
-        logic.OnMove(0, dv);
+        if (Input.GetMouseButton(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            logic.OnClick(ray);
+        }
     }
 }

@@ -11,9 +11,13 @@ public class Logic
         data = _data;
     }
 
-    public void OnMove(float deltaHorizontal, float deltaVertical)
+    public void OnClick(Ray ray)
     {
-        Vector3 p = data.Position;
-        data.Position = new Vector3(p.x + deltaHorizontal, p.y, p.z + deltaVertical);
+        float enter = 0.0f;
+
+        if (World.Plane.Raycast(ray, out enter))
+        {
+            data.Position = ray.GetPoint(enter) + new Vector3(0, 0.5f, 0);
+        }
     }
 }
