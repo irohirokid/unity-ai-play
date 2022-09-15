@@ -17,7 +17,15 @@ public class Logic
 
         if (World.Plane.Raycast(ray, out enter))
         {
-            data.Position = ray.GetPoint(enter) + new Vector3(0, 0.5f, 0);
+            data.Destination = ray.GetPoint(enter) + new Vector3(0, 0.5f, 0);
+        }
+    }
+
+    public void Tick()
+    {
+        if (data.HasWayToGo())
+        {
+            data.Walk();
         }
     }
 }

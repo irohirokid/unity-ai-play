@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
         inputManager.Setup(logic);
     }
 
+    void Update()
+    {
+        logic.Tick();
+    }
+
     void OnDestroy()
     {
         data.OnPositionChanged -= Move;
