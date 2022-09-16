@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Logic
+public class PlayerLogic
 {
-    Data data;
+    PlayerData data;
     public Action CurrentAction;
 
-    public void Setup(Data _data)
+    public void Setup(PlayerData _data)
     {
         data = _data;
     }

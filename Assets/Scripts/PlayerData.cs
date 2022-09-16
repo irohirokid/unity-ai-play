@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Data : ScriptableObject
+public class PlayerData : ScriptableObject
 {
     public Vector3 Destination;
 

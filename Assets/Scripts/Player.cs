@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Data data;
-    Logic logic;
+    PlayerData data;
+    PlayerLogic logic;
 
     void Awake()
     {
-        data = ScriptableObject.CreateInstance<Data>();
+        data = ScriptableObject.CreateInstance<PlayerData>();
         data.OnPositionChanged += Move;
 
-        logic = new Logic();
+        logic = new PlayerLogic();
         logic.Setup(data);
 
         InputManager inputManager = GameObject.Find("Input Manager").GetComponent<InputManager>();

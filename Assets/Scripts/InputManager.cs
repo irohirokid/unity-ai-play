@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    Logic logic;
+    PlayerLogic logic;
 
-    public void Setup(Logic _logic)
+    public void Setup(PlayerLogic _logic)
     {
         logic = _logic;
     }
