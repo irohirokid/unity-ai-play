@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    EnemyData data;
     EnemyLogic logic;
 
     void Awake()
     {
-        data = ScriptableObject.CreateInstance<EnemyData>();
-        data.OnPositionChanged += Move;
+        World.Enemy = ScriptableObject.CreateInstance<EnemyData>();
+        World.Enemy.OnPositionChanged += Move;
 
         logic = new EnemyLogic();
-        logic.Setup(data);
+        logic.Setup(World.Enemy);
     }
 
     void Start()
@@ -28,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     void OnDestroy()
     {
-        data.OnPositionChanged -= Move;
+        World.Enemy.OnPositionChanged -= Move;
     }
 
     void Move(Vector3 previous, Vector3 current)

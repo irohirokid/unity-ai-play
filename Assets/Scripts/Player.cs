@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    PlayerData data;
     PlayerLogic logic;
 
     void Awake()
     {
-        data = ScriptableObject.CreateInstance<PlayerData>();
-        data.OnPositionChanged += Move;
+        World.Player = ScriptableObject.CreateInstance<PlayerData>();
+        World.Player.OnPositionChanged += Move;
 
         logic = new PlayerLogic();
-        logic.Setup(data);
+        logic.Setup(World.Player);
 
         InputManager inputManager = GameObject.Find("Input Manager").GetComponent<InputManager>();
         inputManager.Setup(logic);
@@ -31,7 +30,7 @@ public class Player : MonoBehaviour
 
     void OnDestroy()
     {
-        data.OnPositionChanged -= Move;
+        World.Player.OnPositionChanged -= Move;
     }
 
     void Move(Vector3 previous, Vector3 current)
