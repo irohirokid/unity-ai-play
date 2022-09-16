@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class Logic
 {
     Data data;
+    public Action CurrentAction;
 
     public void Setup(Data _data)
     {
@@ -21,11 +23,22 @@ public class Logic
         }
     }
 
-    public void Tick()
+    public IEnumerator Behaviour()
     {
-        if (data.HasWayToGo())
+        while (true)
         {
-            data.Walk();
+            makeDecision();
+            yield return new WaitUntil(needDecision);
         }
+    }
+
+    void makeDecision()
+    {
+        CurrentAction = () => data.Walk();
+    }
+
+    bool needDecision()
+    {
+        return !data.HasWayToGo();
     }
 }

@@ -19,9 +19,14 @@ public class Player : MonoBehaviour
         inputManager.Setup(logic);
     }
 
+    void Start()
+    {
+        StartCoroutine(logic.Behaviour());
+    }
+
     void Update()
     {
-        logic.Tick();
+        logic.CurrentAction();
     }
 
     void OnDestroy()
