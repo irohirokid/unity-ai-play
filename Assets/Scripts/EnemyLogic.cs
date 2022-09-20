@@ -24,11 +24,12 @@ public class EnemyLogic
 
     void makeDecision()
     {
-        CurrentAction = delegate(){};
+        World.Enemy.TargetPoint = World.Enemy.Position + (World.Player.Position - World.Enemy.Position) * 1.5f;
+        CurrentAction = () => World.Enemy.Chase();
     }
 
     bool needDecision()
     {
-        return false;
+        return World.Enemy.didFinishAction();
     }
 }
