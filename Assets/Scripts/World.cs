@@ -5,8 +5,6 @@ using UnityEngine;
 public static class World
 {
     public static readonly Plane Plane;
-    public static PlayerData Player;
-    public static EnemyData Enemy;
 
     static World()
     {

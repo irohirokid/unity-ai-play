@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     PlayerLogic logic;
+    PlayerData data;
 
     void Awake()
     {
-        World.Player = ScriptableObject.CreateInstance<PlayerData>();
-        World.Player.OnPositionChanged += Move;
+        data = ScriptableObject.CreateInstance<PlayerData>();
+        data.OnPositionChanged += Move;
+
+        DataRepository dataRepo = DataRepository.Instance;
+        dataRepo.Player = data;
 
         logic = new PlayerLogic();
-        logic.Setup(World.Player);
+        logic.Setup(dataRepo);
 
         InputManager inputManager = GameObject.Find("Input Manager").GetComponent<InputManager>();
         inputManager.Setup(logic);
@@ -30,7 +35,7 @@ public class Player : MonoBehaviour
 
     void OnDestroy()
     {
-        World.Player.OnPositionChanged -= Move;
+        data.OnPositionChanged -= Move;
     }
 
     void Move(Vector3 previous, Vector3 current)

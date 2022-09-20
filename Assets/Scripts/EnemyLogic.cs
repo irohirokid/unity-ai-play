@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class EnemyLogic
 {
-    EnemyData data;
     public Action CurrentAction;
 
-    public void Setup(EnemyData _data)
+    DataRepository data;
+
+    public void Setup(DataRepository _data)
     {
         data = _data;
     }
@@ -24,12 +25,12 @@ public class EnemyLogic
 
     void makeDecision()
     {
-        World.Enemy.TargetPoint = World.Enemy.Position + (World.Player.Position - World.Enemy.Position) * 1.5f;
-        CurrentAction = () => World.Enemy.Chase();
+        data.Enemy.TargetPoint = data.Enemy.Position + (data.Player.Position - data.Enemy.Position) * 1.5f;
+        CurrentAction = () => data.Enemy.Chase();
     }
 
     bool needDecision()
     {
-        return World.Enemy.didFinishAction();
+        return data.Enemy.didFinishAction();
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PlayerLogic
 {
-    PlayerData data;
     public Action CurrentAction;
+    DataRepository data;
 
-    public void Setup(PlayerData _data)
+    public void Setup(DataRepository _data)
     {
         data = _data;
     }
@@ -19,7 +19,7 @@ public class PlayerLogic
 
         if (World.Plane.Raycast(ray, out enter))
         {
-            data.Destination = ray.GetPoint(enter) + new Vector3(0, 0.5f, 0);
+            data.Player.Destination = ray.GetPoint(enter) + new Vector3(0, 0.5f, 0);
         }
     }
 
@@ -34,11 +34,11 @@ public class PlayerLogic
 
     void makeDecision()
     {
-        CurrentAction = () => data.Walk();
+        CurrentAction = () => data.Player.Walk();
     }
 
     bool needDecision()
     {
-        return !data.HasWayToGo();
+        return !data.Player.HasWayToGo();
     }
 }

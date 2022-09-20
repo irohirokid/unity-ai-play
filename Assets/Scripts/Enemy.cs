@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,18 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     EnemyLogic logic;
+    EnemyData data;
 
     void Awake()
     {
-        World.Enemy = ScriptableObject.CreateInstance<EnemyData>();
-        World.Enemy.OnPositionChanged += Move;
+        data = ScriptableObject.CreateInstance<EnemyData>();
+        data.OnPositionChanged += Move;
+
+        DataRepository dataRepo = DataRepository.Instance;
+        dataRepo.Enemy = data;
 
         logic = new EnemyLogic();
-        logic.Setup(World.Enemy);
+        logic.Setup(dataRepo);
     }
 
     void Start()
@@ -27,7 +32,7 @@ public class Enemy : MonoBehaviour
 
     void OnDestroy()
     {
-        World.Enemy.OnPositionChanged -= Move;
+        data.OnPositionChanged -= Move;
     }
 
     void Move(Vector3 previous, Vector3 current)
