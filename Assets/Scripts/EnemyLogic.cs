@@ -25,7 +25,7 @@ public class EnemyLogic
 
     void makeDecision()
     {
-        data.Enemy.TargetPoint = data.Enemy.Position + (data.Player.Position - data.Enemy.Position) * 1.5f;
+        data.Enemy.TargetPoint = data.Enemy.Position.Value + (data.Player.Position.Value - data.Enemy.Position.Value) * 1.5f;
         CurrentAction = () => data.Enemy.Chase();
     }
 

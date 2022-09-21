@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         data = ScriptableObject.CreateInstance<EnemyData>();
-        data.OnPositionChanged += Move;
+        data.Position.OnValueChanged += Move;
 
         DataRepository dataRepo = DataRepository.Instance;
         dataRepo.Enemy = data;
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
 
     void OnDestroy()
     {
-        data.OnPositionChanged -= Move;
+        data.Position.OnValueChanged -= Move;
     }
 
     void Move(Vector3 previous, Vector3 current)

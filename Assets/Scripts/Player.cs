@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         data = ScriptableObject.CreateInstance<PlayerData>();
-        data.OnPositionChanged += Move;
+        data.Position.OnValueChanged += Move;
 
         DataRepository dataRepo = DataRepository.Instance;
         dataRepo.Player = data;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     void OnDestroy()
     {
-        data.OnPositionChanged -= Move;
+        data.Position.OnValueChanged -= Move;
     }
 
     void Move(Vector3 previous, Vector3 current)
