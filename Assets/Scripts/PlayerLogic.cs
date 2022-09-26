@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class PlayerLogic : IIntelligent
 {
-    public Action CurrentAction;
     DataRepository data;
-
     public void Setup(DataRepository _data)
     {
         data = _data;
@@ -23,9 +21,14 @@ public class PlayerLogic : IIntelligent
         }
     }
 
+    public void DoAction()
+    {
+        data.Player.CurrentAction();
+    }
+
     public void makeDecision()
     {
-        CurrentAction = () => data.Player.Walk();
+        data.Player.CurrentAction = data.Player.Walk;
     }
 
     public bool needDecision()

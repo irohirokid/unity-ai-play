@@ -18,16 +18,9 @@ public class Enemy : MonoBehaviour
 
         logic = new EnemyLogic();
         logic.Setup(dataRepo);
-    }
 
-    void Start()
-    {
-        StartCoroutine(((IIntelligent)logic).Behaviour());
-    }
-
-    void Update()
-    {
-        logic.CurrentAction();
+        Application app = GameObject.Find("Application").GetComponent<Application>();
+        app.Intelligents.Add((IIntelligent)logic);
     }
 
     void OnDestroy()

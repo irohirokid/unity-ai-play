@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyData : ScriptableObject
+public class EnemyData : Data
 {
     public Vector3 TargetPoint;
 

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class EnemyLogic : IIntelligent
 {
-    public Action CurrentAction;
-
     DataRepository data;
 
     public void Setup(DataRepository _data)
@@ -14,10 +12,15 @@ public class EnemyLogic : IIntelligent
         data = _data;
     }
 
+    public void DoAction()
+    {
+        data.Enemy.CurrentAction();
+    }
+
     public void makeDecision()
     {
         data.Enemy.TargetPoint = data.Enemy.Position.Value + (data.Player.Position.Value - data.Enemy.Position.Value) * 1.5f;
-        CurrentAction = () => data.Enemy.Chase();
+        data.Enemy.CurrentAction = data.Enemy.Chase;
     }
 
     public bool needDecision()

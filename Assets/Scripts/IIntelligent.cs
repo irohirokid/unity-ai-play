@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IIntelligent
+public interface IIntelligent
 {
+    void DoAction();
     void makeDecision();
     bool needDecision();
 

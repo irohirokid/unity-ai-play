@@ -19,18 +19,11 @@ public class Player : MonoBehaviour
         logic = new PlayerLogic();
         logic.Setup(dataRepo);
 
+        Application app = GameObject.Find("Application").GetComponent<Application>();
+        app.Intelligents.Add((IIntelligent)logic);
+
         InputManager inputManager = GameObject.Find("Input Manager").GetComponent<InputManager>();
         inputManager.Setup(logic);
-    }
-
-    void Start()
-    {
-        StartCoroutine(((IIntelligent)logic).Behaviour());
-    }
-
-    void Update()
-    {
-        logic.CurrentAction();
     }
 
     void OnDestroy()
