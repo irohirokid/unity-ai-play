@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLogic
+public class PlayerLogic : IIntelligent
 {
     public Action CurrentAction;
     DataRepository data;
@@ -23,21 +23,12 @@ public class PlayerLogic
         }
     }
 
-    public IEnumerator Behaviour()
-    {
-        while (true)
-        {
-            makeDecision();
-            yield return new WaitUntil(needDecision);
-        }
-    }
-
-    void makeDecision()
+    public void makeDecision()
     {
         CurrentAction = () => data.Player.Walk();
     }
 
-    bool needDecision()
+    public bool needDecision()
     {
         return !data.Player.HasWayToGo();
     }

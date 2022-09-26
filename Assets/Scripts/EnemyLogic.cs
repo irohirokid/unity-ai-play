@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLogic
+public class EnemyLogic : IIntelligent
 {
     public Action CurrentAction;
 
@@ -14,22 +14,13 @@ public class EnemyLogic
         data = _data;
     }
 
-    public IEnumerator Behaviour()
-    {
-        while (true)
-        {
-            makeDecision();
-            yield return new WaitUntil(needDecision);
-        }
-    }
-
-    void makeDecision()
+    public void makeDecision()
     {
         data.Enemy.TargetPoint = data.Enemy.Position.Value + (data.Player.Position.Value - data.Enemy.Position.Value) * 1.5f;
         CurrentAction = () => data.Enemy.Chase();
     }
 
-    bool needDecision()
+    public bool needDecision()
     {
         return data.Enemy.didFinishAction();
     }

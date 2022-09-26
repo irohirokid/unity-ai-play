@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(logic.Behaviour());
+        StartCoroutine(((IIntelligent)logic).Behaviour());
     }
 
     void Update()

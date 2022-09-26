@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(logic.Behaviour());
+        StartCoroutine(((IIntelligent)logic).Behaviour());
     }
 
     void Update()
