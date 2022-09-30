@@ -26,6 +26,14 @@ public class Player : MonoBehaviour
         inputManager.Setup(logic);
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Gold")
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
     void OnDestroy()
     {
         data.Position.OnValueChanged -= Move;
