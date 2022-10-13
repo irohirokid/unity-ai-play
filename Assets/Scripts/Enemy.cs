@@ -10,6 +10,16 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
+        Init();
+    }
+
+    public void Reset()
+    {
+        transform.position = EnemyData.InitialPosition;
+    }
+
+    public void Init()
+    {
         data = ScriptableObject.CreateInstance<EnemyData>();
         data.Position.OnValueChanged += Move;
 

@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         data = ScriptableObject.CreateInstance<PlayerData>();
         data.Position.OnValueChanged += Move;
 
