@@ -6,7 +6,21 @@ public class ObservableVariable<T>
 {
     [SerializeField] T _value;
 
-    public event Action<T, T> OnValueChanged;
+    event Action<T, T> _onValueChanged;
+    public event Action<T, T> OnValueChanged
+    {
+        add
+        {
+            if (_onValueChanged == null || !Array.Exists(_onValueChanged.GetInvocationList(), e => (Action<T, T>)e == value))
+            {
+                _onValueChanged += value;
+            }
+        }
+        remove
+        {
+            _onValueChanged -= value;
+        }
+    }
 
     public T Value
     {
@@ -15,7 +29,7 @@ public class ObservableVariable<T>
         {
             T previous = _value;
             _value = value;
-            OnValueChanged?.Invoke(previous, _value);
+            _onValueChanged?.Invoke(previous, _value);
         }
     }
 }
