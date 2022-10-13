@@ -34,6 +34,12 @@ public class ApplicationEditor : Editor
             autoPlaying = false;
             app.Reset();
         }
+
+        if (GUILayout.Button("Reset Golds"))
+        {
+            World.ResetGold();
+            app.PlaceGold();
+        }
     }
 
     IEnumerator Ticker()

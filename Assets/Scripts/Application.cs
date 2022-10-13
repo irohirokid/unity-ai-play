@@ -15,8 +15,6 @@ public class Application : MonoBehaviour
 
     void Start()
     {
-        placeGold();
-
         foreach (IIntelligent i in Intelligents)
         {
             StartCoroutine(i.Behaviour());
@@ -40,13 +38,10 @@ public class Application : MonoBehaviour
     {
         Intelligents.Clear();
         GameObject.Find("Enemy").GetComponent<Enemy>().Reset();
-        placeGold();
     }
 
-    void placeGold()
+    public void PlaceGold()
     {
-        World.ResetGold();
-
         foreach (var gold in GameObject.FindGameObjectsWithTag("Gold"))
         {
             DestroyImmediate(gold);
