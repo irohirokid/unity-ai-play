@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     void Awake()
     {
         Init();
+
+        InputManager inputManager = GameObject.Find("Input Manager").GetComponent<InputManager>();
+        inputManager.Setup(logic);
     }
 
     public void Init()
@@ -26,9 +29,16 @@ public class Player : MonoBehaviour
 
         Application app = GameObject.Find("Application").GetComponent<Application>();
         app.Intelligents.Add((IIntelligent)logic);
+    }
 
-        InputManager inputManager = GameObject.Find("Input Manager").GetComponent<InputManager>();
-        inputManager.Setup(logic);
+    public void StartAI()
+    {
+        Application app = GameObject.Find("Application").GetComponent<Application>();
+        DataRepository dataRepo = DataRepository.Instance;
+
+        PlayerAI ai = new PlayerAI();
+        ai.Setup(dataRepo, logic);
+        app.Intelligents.Add((IIntelligent)ai);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -47,5 +57,10 @@ public class Player : MonoBehaviour
     void Move(Vector3 previous, Vector3 current)
     {
         transform.position = current;
+    }
+
+    public void Reset()
+    {
+        transform.position = new Vector3(0, 0.5f, 0);
     }
 }

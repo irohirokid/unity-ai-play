@@ -9,7 +9,9 @@ public class Application : MonoBehaviour
 
     public void Init()
     {
-        GameObject.Find("Player").GetComponent<Player>().Init();
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        player.Init();
+        player.StartAI();
         GameObject.Find("Enemy").GetComponent<Enemy>().Init();
     }
 
@@ -38,6 +40,7 @@ public class Application : MonoBehaviour
     {
         Intelligents.Clear();
         GameObject.Find("Enemy").GetComponent<Enemy>().Reset();
+        GameObject.Find("Player").GetComponent<Player>().Reset();
     }
 
     public void PlaceGold()
