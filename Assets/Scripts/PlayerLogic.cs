@@ -11,14 +11,9 @@ public class PlayerLogic : IIntelligent
         data = _data;
     }
 
-    public void OnClick(Ray ray)
+    public void OnClick(Vector3 point)
     {
-        float enter = 0.0f;
-
-        if (World.Plane.Raycast(ray, out enter))
-        {
-            data.Player.Destination = ray.GetPoint(enter) + new Vector3(0, 0.5f, 0);
-        }
+        data.Player.Destination = point + new Vector3(0, 0.5f, 0);
     }
 
     public void DoAction()

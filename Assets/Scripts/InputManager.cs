@@ -16,7 +16,12 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            logic.OnClick(ray);
+
+            float enter = 0.0f;
+            if (World.Plane.Raycast(ray, out enter))
+            {
+                logic.OnClick(ray.GetPoint(enter));
+            }
         }
     }
 }
