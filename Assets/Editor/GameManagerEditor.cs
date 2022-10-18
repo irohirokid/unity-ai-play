@@ -47,6 +47,9 @@ public class GameManagerEditor : Editor
         while (autoPlaying)
         {
             yield return null;
+            Physics.autoSimulation = false;
+            Physics.Simulate(Time.fixedDeltaTime);
+            Physics.autoSimulation = true;
             app.Tick();
         }
     }

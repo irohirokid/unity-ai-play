@@ -45,9 +45,12 @@ public class GameManager : MonoBehaviour
 
     public void PlaceGold()
     {
-        foreach (var gold in GameObject.FindGameObjectsWithTag("Gold"))
+        foreach (GameObject obj in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
         {
-            DestroyImmediate(gold);
+            if (obj.CompareTag("Gold") && obj.scene.name != null)
+            {
+                DestroyImmediate(obj);
+            }
         }
 
         for (int i = 0; i < World.goldCount; i++)

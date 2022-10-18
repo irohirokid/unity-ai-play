@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Player : MonoBehaviour
 {
     PlayerLogic logic;
@@ -10,10 +11,13 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        Init();
+        if (Application.IsPlaying(this))
+        {
+            Init();
 
-        InputManager inputManager = GameObject.Find("Input Manager").GetComponent<InputManager>();
-        inputManager.Setup(logic);
+            InputManager inputManager = GameObject.Find("Input Manager").GetComponent<InputManager>();
+            inputManager.Setup(logic);
+        }
     }
 
     public void Init()
@@ -45,7 +49,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Gold")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 
