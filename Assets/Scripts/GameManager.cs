@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Application : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public List<IIntelligent> Intelligents = new List<IIntelligent>();
     public GameObject goldPrefab;

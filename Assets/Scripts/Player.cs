@@ -27,13 +27,13 @@ public class Player : MonoBehaviour
         logic = new PlayerLogic();
         logic.Setup(dataRepo);
 
-        Application app = GameObject.Find("Application").GetComponent<Application>();
+        GameManager app = GameObject.Find("GameManager").GetComponent<GameManager>();
         app.Intelligents.Add((IIntelligent)logic);
     }
 
     public void StartAI()
     {
-        Application app = GameObject.Find("Application").GetComponent<Application>();
+        GameManager app = GameObject.Find("GameManager").GetComponent<GameManager>();
         DataRepository dataRepo = DataRepository.Instance;
 
         PlayerAI ai = new PlayerAI();

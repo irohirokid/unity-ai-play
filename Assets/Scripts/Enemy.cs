@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         logic = new EnemyLogic();
         logic.Setup(dataRepo);
 
-        Application app = GameObject.Find("Application").GetComponent<Application>();
+        GameManager app = GameObject.Find("GameManager").GetComponent<GameManager>();
         app.Intelligents.Add((IIntelligent)logic);
     }
 

@@ -4,17 +4,17 @@ using Unity.EditorCoroutines.Editor;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Application))]
-public class ApplicationEditor : Editor
+[CustomEditor(typeof(GameManager))]
+public class GameManagerEditor : Editor
 {
-    Application app;
+    GameManager app;
     bool autoPlaying = false;
 
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        app = (Application)target;
+        app = (GameManager)target;
 
         if (GUILayout.Button("Auto Play"))
         {
